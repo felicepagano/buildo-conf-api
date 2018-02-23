@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8000:80"
+
+  web:
+    command: npm run dev
+    build: ./node
+    volumes:
+      - ./node:/usr/src/app
+    ports:
+      - "8080:8080"
+    links:
+      - mongo
+    environment:
+      - MONGO_DB_URI=mongodb://mongo:27017/buildo
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - data-volume:/data/db
+
+  volumes:
+    data-volume:
+
+  #very small image (125 bytes total) - used just to store data
+  #mongodata:
+   # image: tianon/true
+    #volumes:
+     # - /data/db
