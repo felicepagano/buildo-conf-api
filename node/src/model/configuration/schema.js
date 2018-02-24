@@ -8,12 +8,10 @@ const { Schema } = mongoose;
  * This is the schema for the configuration entity.
  * @type {*|Mongoose.Schema}
  */
-const configurationSchema = new Schema(
-  {
-    id: { type: String, required: true },
-    name: { type: String },
-    value: { type: String }
-  }
-);
+const configurationSchema = new Schema({
+  id: { type: String, required: true },
+  name: { type: String },
+  value: { type: String }
+});
 
 module.exports =  configurationSchema;
