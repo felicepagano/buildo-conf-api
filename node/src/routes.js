@@ -6,10 +6,6 @@ const router = new Router();
  */
 const configuration = require('./model/configuration/router');
 
-router.route('/').get((req, res) => {
-  res.json({ message: 'Welcome to buildo API!' });
-});
-
 router.use('/configuration', configuration);
 
 module.exports = router;

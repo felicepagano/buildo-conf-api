@@ -3,15 +3,20 @@ version: '3'
 services:
 
   nginx:
-    image: nginx:alpine
+    restart: always
+    build: ./nginx/
     ports:
-      - "8000:80"
+      - "80:80"
+    volumes:
+      - data-volume:/www/public
+    links:
+      - web:web
 
   web:
-    command: npm run dev
+    command: npm start
     build: ./node
     volumes:
-      - ./node:/usr/src/app
+      - ./node/src:/usr/src/app
     ports:
       - "8080:8080"
     links:
@@ -26,8 +31,8 @@ services:
     volumes:
       - data-volume:/data/db
 
-  volumes:
-    data-volume:
+volumes:
+  data-volume:
 
   #very small image (125 bytes total) - used just to store data
   #mongodata:
