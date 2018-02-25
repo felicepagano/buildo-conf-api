@@ -4,8 +4,8 @@ const router = new Router();
 /**
  * Configuration module router.
  */
-const configuration = require('./model/configuration/router');
+const configurations = require('./model/configurations/router');
 
-router.use('/configuration', configuration);
+router.use('/configurations', configurations);
 
 module.exports = router;
