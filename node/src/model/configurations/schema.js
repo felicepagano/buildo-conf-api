@@ -11,8 +11,8 @@ const { Schema } = mongoose;
  */
 const configurationSchema = new Schema({
   id: { type: String, required: true },
-  name: { type: String },
-  value: { type: String }
+  name: { type: String, maxlength: 255 },
+  value: { type: String, maxlength: 255 }
 });
 
 module.exports =  configurationSchema;

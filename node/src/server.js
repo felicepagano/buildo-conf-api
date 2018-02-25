@@ -39,6 +39,13 @@ const morgan = require('morgan');
  */
 const bluebird = require('bluebird');
 
+/**
+ * Handle mongoose "ValidationError" and "CastError" as a bad request
+ * instead of Internal Server Error.
+ * For others errors it will return an Internal Server Error.
+ */
+const statusHandler = require('express-mongoose-status');
+
 const config = require('./config');
 const routes = require('./routes');
 
@@ -48,13 +55,16 @@ mongoose.Promise = bluebird;
 // connect method will create the database if it does not exist.
 mongoose.connect(config.mongo.url);
 
-// configure express
+// configure express middleware
 app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
-
 app.use('/', routes);
+app.use((err, req, res, next) => {
+  // console.error(err.stack);
+  statusHandler(err, res);
+});
 
 app.listen(config.server.port, () => {
   console.log(`Magic happens on port ${config.server.port}`);

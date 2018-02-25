@@ -3,5 +3,8 @@ const configurationSchema = require('./schema');
 
 class ConfigurationFacade extends Facade {}
 
-// create a facade to a new model named Configuration with configuration schema
+/*
+ * The first argument is the singular name of the collection your model is for.
+ * Mongoose automatically looks for the plural version of your model name.
+ */
 module.exports = new ConfigurationFacade('Configuration', configurationSchema);
