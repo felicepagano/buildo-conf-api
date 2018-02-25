@@ -6,6 +6,7 @@ const { Schema } = mongoose;
  * A Schema is an object that defines the structure of any documents that will be stored in your
  * MongoDB collection; it enables you to define types and validators for all of your data items.
  * This is the schema for the configuration entity.
+ * @link http://mongoosejs.com/docs/guide.html
  * @type {*|Mongoose.Schema}
  */
 const configurationSchema = new Schema({
