@@ -11,6 +11,8 @@ services:
       - data-volume:/www/public
     links:
       - web:web
+    image:
+      fpagano/buildo-nginx
 
   web:
     command: npm start
@@ -23,6 +25,8 @@ services:
       - mongo
     environment:
       - MONGO_DB_URI=mongodb://mongo:27017/buildo
+    image:
+      fpagano/buildo-node
 
   mongo:
     image: mongo
@@ -33,9 +37,3 @@ services:
 
 volumes:
   data-volume:
-
-  #very small image (125 bytes total) - used just to store data
-  #mongodata:
-   # image: tianon/true
-    #volumes:
-     # - /data/db
