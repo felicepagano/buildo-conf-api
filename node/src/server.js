@@ -61,6 +61,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
 app.use('/', routes);
+
+// if you will remove mongoose as dependecy this middleware will not be necessary.
 app.use((err, req, res, next) => {
   // console.error(err.stack);
   statusHandler(err, res);
