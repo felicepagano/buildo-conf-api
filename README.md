@@ -2,7 +2,7 @@
 
 HTTP API for managing the configuration values of a system.
 
-[![generator-api](https://img.shields.io/badge/built%20with-generator--api-green.svg)](https://github.com/ndelvalle/generator-api)
+[![generator-api](https://img.shields.io/badge/built%20with-generator--api-green.svg)](https://github.com/ndelvalle/generator-api) &leftarrow; Click here for details.
 
 ## Getting Started
 
@@ -14,15 +14,19 @@ You can run the entire application stack in local just through docker without th
 
 [Docker](https://docs.docker.com/engine/installation/) :whale: & [docker-compose](https://docs.docker.com/compose/install/).
 
-But, as developer, we suggest to install the following optional tools:
+But, as developer, you would like to install the following tools:
 
-[nodejs/npm](https://https://nodejs.org/en/) and the following packages:
+[nodejs/npm](https://https://nodejs.org/en/) and the following packages globally:
 
 ```
 ├── yo
 ├── generator-api
 ├── jsdoc
 └── yarn
+
+e.g.
+
+yarn install -g yarn
 ```
 
 yo ([yeoman](http://yeoman.io)) is a scaffolding tool, used to scaffold the application.
@@ -33,81 +37,34 @@ yo ([yeoman](http://yeoman.io)) is a scaffolding tool, used to scaffold the appl
 
 [yarn](https://yarnpkg.com/lang/en/) dependecies management.
 
-### Installing
-
-To start the application in local using docker just type in console the following command from the project root project (sudo could be unnecessary):
-
-```bash
-sudo docker-compose up
-```
-
-This will setup an environment with:
-an nginx server that will expose the port 443 (https with a self signed certificate) using basic auth and will redirect to the backend.
-an express server
-a mongodb used to persist data.
-
-docker-compose will do its magic and at the end you will be able to call the REST api using the address https://localhost/configurations.
-
 ## Running the tests
 
 Explain how to run the automated tests for this system
 
-### Break down into end to end tests
+## Running the generated project
 
-Explain what these tests test and why
+Make sure you have node version `>= 6` because this project uses native supported ES6 features.
 
-```
-Give an example
-```
+### Development
 
-### And coding style tests
+- Run: `mongod` to start the local mongodb in a separated terminal instance (If you don't have mongodb installed locally, visit It's [webpage](https://docs.mongodb.com/manual/installation/) to learn how to install it).
+- Run: `npm run dev` to run the app (By default the app will run at `localhost:8080`, you can change this in the config file).
 
-Explain what these tests test and why
+**Did you choose Docker (:whale:) support?**
 
-```
-Give an example
-```
+You only need [Docker](https://docs.docker.com/engine/installation/) and [docker-compose](https://docs.docker.com/compose/install/) installed, forget about having node, mongodb or npm.
 
-## Deployment
+- Run: `docker-compose up` to run the app. _You might need `sudo` for this one_.
 
-Add additional notes about how to deploy this on a live system
+_NOTE_: The Dockerfile uses `node:latest` as its starting point, if you wish to use another version of Node check out the available ones [here](https://hub.docker.com/_/node/).
 
-## Built With
+### Production
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+You'll likely be consuming mongodb as a service, so make sure to set the env var pointing at it. Then run `npm start`.
 
-## Contributing
+**Using Docker**
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
-
-
-## production
-
-build the Docker :whale: container and run it:
-
-_you'll likely be consuming mongodb as a service, so make sure you set the env var to connect to it._
+Build the Docker container and run it:
 
 ```bash
 sudo docker build -t <image-name> .
@@ -118,6 +75,24 @@ sudo docker run \
   npm run start
 ```
 
+Docker image build is also triggered via github commit, so you can find the latest available image on [docker-hub](https://hub.docker.com/r/fpagano/buildo-node/)
 
+## Built With
 
---------------------------------------------------------------------------------
+* [npm](https://www.npmjs.com/) - Dependency Management
+* [express](https://expressjs.com/) - The web framework used
+* [bluebird](http://bluebirdjs.com/docs/getting-started.html)
+* [body-parser]() - Third party promise library
+* [express-mongoose-status](https://www.npmjs.com/package/express-mongoose-status) -  handle mongoose responses and convert them to correct HTTP status in a REST API using Express
+* [helmet](https://helmetjs.github.io/) - Helmet helps you secure your Express apps by setting various HTTP headers.
+* [http-status-codes](https://www.npmjs.com/package/http-status-codes) - Constants enumerating the HTTP status codes.
+* [mongoose](http://mongoosejs.com/) - elegant mongodb object modeling for node.js
+* [morgan](https://github.com/expressjs/morgan) - HTTP request logger middleware for node.js
+
+## Contributing
+
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code.
+
+## Authors
+
+* **Felice Pagano** - [felicepagano](https://github.com/felicepagano)
