@@ -10,9 +10,9 @@ const { Schema } = mongoose;
  * @type {*|Mongoose.Schema}
  */
 const configurationSchema = new Schema({
-  id: { type: String, required: true },
-  name: { type: String, maxlength: 255 },
-  value: { type: String, maxlength: 255 }
+  _id: { type: String, required: true },
+  name: { type: String, maxlength: 1024 },
+  value: { type: String, maxlength: 1024 }
 });
 
 module.exports =  configurationSchema;
