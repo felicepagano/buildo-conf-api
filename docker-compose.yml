@@ -6,7 +6,7 @@ services:
     command: npm start
     build: ./node
     volumes:
-      - web-volume:/usr/src/app
+      - /usr/src/app
     ports:
       #here you can define the host port if you need another one.
       #"HOST:CONTAINER" please due to YAML number parsing please specify your port mappings as strings.
@@ -27,4 +27,3 @@ services:
 
 volumes:
   data-volume:
-  web-volume:

@@ -18,6 +18,12 @@ class Facade {
     return model.save();
   }
 
+  find(...args) {
+    return this.model
+      .find(...args)
+      .exec();
+  }
+
   findById(...args) {
     return this.model
       .findById(...args)

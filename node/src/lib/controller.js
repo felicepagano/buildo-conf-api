@@ -26,6 +26,12 @@ class Controller {
       .catch(err => next(err));
   }
 
+  find(req, res, next) {
+    return this.facade.find(req.query)
+      .then(collection => res.status(HttpStatus.OK).json(collection))
+      .catch(err => next(err));
+  }
+
   /**
    * Search a document using mongo _id.
    * It will return 404 if nothing is found, otherwise 200.

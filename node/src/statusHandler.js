@@ -18,8 +18,6 @@ module.exports = function (err, res, data, status, canBeEmpty) {
 function handleErrors (res, err) {
   var statusCode = 500;
 
-  console.log(err.name);
-
   switch (err.name) {
     case "ValidationError":
     case "CastError":
@@ -30,9 +28,10 @@ function handleErrors (res, err) {
         statusCode = 404;
       }
       break;
-    case "MongoError":
+    case "BulkWriteError":
       statusCode = getMongoErrorsCode(err.code);
       break;
+    default: statusCode = 500;
   }
 
   if (!_.isObject(err)) {

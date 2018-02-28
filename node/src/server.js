@@ -44,7 +44,7 @@ const bluebird = require('bluebird');
  * instead of Internal Server Error.
  * For others errors it will return an Internal Server Error.
  */
-const statusHandler = require('statusHandler');
+const statusHandler = require('./statusHandler');
 
 const config = require('./config');
 const routes = require('./routes');

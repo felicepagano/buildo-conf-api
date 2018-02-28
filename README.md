@@ -22,6 +22,7 @@ express will expose the following api:
 'DELETE' will delete the object with the given id.
 
 [here](https://documenter.getpostman.com/view/2212215/configuration/RVg5986u) you can find the API calls for postman.
+[here](http://188.166.89.24:8080/configurations) you can find a live server with the latest version of the API.
 
 [![generator-api](https://img.shields.io/badge/built%20with-generator--api-green.svg)](https://github.com/ndelvalle/generator-api) &leftarrow; Click here for details.
 
