@@ -1,6 +1,7 @@
 # Configuration API
 
-HTTP API for managing the configuration values of a system.
+HTTP API for managing the configuration values of a system. These API are exposed through nodejs and express web server and the configurations object are stored and retrieved from a mongodb instance.
+The entire infrastructure is provided by a docker-compose file.
 
 [![generator-api](https://img.shields.io/badge/built%20with-generator--api-green.svg)](https://github.com/ndelvalle/generator-api) &leftarrow; Click here for details.
 
@@ -10,11 +11,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-You can run the entire application stack in local just through docker without the need of installing all the dependecies in your dev machine.
+You can run the entire application stack locally with docker without the need to install all the dependencies in your dev machine.
 
 [Docker](https://docs.docker.com/engine/installation/) :whale: & [docker-compose](https://docs.docker.com/compose/install/).
 
-But, as developer, you would like to install the following tools:
+As developer, you will need to install the following tools:
 
 [nodejs/npm](https://https://nodejs.org/en/) and the following packages globally:
 
@@ -22,6 +23,7 @@ But, as developer, you would like to install the following tools:
 ├── yo
 ├── generator-api
 ├── jsdoc
+├── mocha
 └── yarn
 
 e.g.
@@ -29,7 +31,7 @@ e.g.
 yarn install -g yarn
 ```
 
-yo ([yeoman](http://yeoman.io)) is a scaffolding tool, used to scaffold the application.
+yo ([yeoman](http://yeoman.io)) is a scaffolding tool.
 
 [generator-api](https://github.com/ndelvalle/generator-api) a yeoman generator for creating RESTful NodeJS APIs, using ES6, Mongoose and Express.
 
@@ -37,9 +39,22 @@ yo ([yeoman](http://yeoman.io)) is a scaffolding tool, used to scaffold the appl
 
 [yarn](https://yarnpkg.com/lang/en/) dependecies management.
 
+[mocha](https://mochajs.org/) test framework
+
 ## Running the tests
 
-Explain how to run the automated tests for this system
+Under the node/test folder you can find a package.json file. This is a copy of the ./node/src/package.json. I didn't find a nice way to share the two files, so I'm fine with a little effort to mantains both.
+
+You need the following steps to run tests:
+
+```bash
+yarn install -g yarn
+yarn install -g mocha
+
+npm test
+```
+
+This will execute all the js files under the `./node/test/` directory
 
 ## Running the generated project
 
@@ -47,35 +62,23 @@ Make sure you have node version `>= 6` because this project uses native supporte
 
 ### Development
 
-- Run: `mongod` to start the local mongodb in a separated terminal instance (If you don't have mongodb installed locally, visit It's [webpage](https://docs.mongodb.com/manual/installation/) to learn how to install it).
-- Run: `npm run dev` to run the app (By default the app will run at `localhost:8080`, you can change this in the config file).
 
-**Did you choose Docker (:whale:) support?**
-
-You only need [Docker](https://docs.docker.com/engine/installation/) and [docker-compose](https://docs.docker.com/compose/install/) installed, forget about having node, mongodb or npm.
-
-- Run: `docker-compose up` to run the app. _You might need `sudo` for this one_.
-
-_NOTE_: The Dockerfile uses `node:latest` as its starting point, if you wish to use another version of Node check out the available ones [here](https://hub.docker.com/_/node/).
 
 ### Production
 
-You'll likely be consuming mongodb as a service, so make sure to set the env var pointing at it. Then run `npm start`.
+You only need [Docker](https://docs.docker.com/engine/installation/) and [docker-compose](https://docs.docker.com/compose/install/) installed, forget about having node, mongodb or npm.
 
-**Using Docker**
+- Run: `docker-compose up` to run the app. _You might need `sudo` for this one_
 
-Build the Docker container and run it:
+_NOTE_: The Dockerfile uses `node:latest` as its starting point, if you wish to use another version of Node check out the available ones [here](https://hub.docker.com/_/node/).
+
+The Docker image is available on docker-hub and his build is triggered by github commits; you can find the latest available image on [docker-hub](https://hub.docker.com/r/fpagano/buildo-node/)
+
+You can also build your image using the following command under the `./node/` folder:
 
 ```bash
 sudo docker build -t <image-name> .
-sudo docker run \
-  -p <host-port>:8080 \
-  -d <image-name> \
-  -e MONGO_DB_URI=mongodb://<username>:<password>@<host>:<port> \
-  npm run start
 ```
-
-Docker image build is also triggered via github commit, so you can find the latest available image on [docker-hub](https://hub.docker.com/r/fpagano/buildo-node/)
 
 ## Built With
 

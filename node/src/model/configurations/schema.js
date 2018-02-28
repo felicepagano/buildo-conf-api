@@ -14,5 +14,8 @@ const configurationSchema = new Schema({
   name: { type: String, maxlength: 1024 },
   value: { type: String, maxlength: 1024 }
 });
-
+/*
+configurationSchema.index({ id: 1, type: -1 });
+configurationSchema.set('autoIndex', false);
+*/
 module.exports =  configurationSchema;
