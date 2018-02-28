@@ -1,7 +1,27 @@
 # Configuration API
 
-HTTP API for managing the configuration values of a system. These API are exposed through nodejs and express web server and the configurations object are stored and retrieved from a mongodb instance.
-The entire infrastructure is provided by a docker-compose file.
+HTTP APIs for managing the configuration values of a system. These API are exposed through nodejs and express web server and the configuration object are stored and retrieved from a mongodb instance.
+The entire infrastructure is provided by a docker-compose file, so no deploy phase is necessary.
+
+Resources are provided in json format. APIs produces and consumes the following model:
+
+```json
+{
+	"_id": "foo",
+	"name": "Configuration for Foo",
+	"value": "This is the value for configuration Foo"
+}
+```
+
+express will expose the following api:
+
+'GET /configurations' will return all the configurations.
+'POST /configurations' with a JSON payload will create a new entry.
+'PUT /configurations/:id' will update the object with the given id.
+'GET /configurations/:id' will return the object with the given id.
+'DELETE' will delete the object with the given id.
+
+[here](https://documenter.getpostman.com/view/2212215/configuration/RVg5986u) you can find the API calls for postman.
 
 [![generator-api](https://img.shields.io/badge/built%20with-generator--api-green.svg)](https://github.com/ndelvalle/generator-api) &leftarrow; Click here for details.
 
@@ -43,7 +63,7 @@ yo ([yeoman](http://yeoman.io)) is a scaffolding tool.
 
 ## Running the tests
 
-Under the node/test folder you can find a package.json file. This is a copy of the ./node/src/package.json. I didn't find a nice way to share the two files, so I'm fine with a little effort to mantains both.
+Under the `./node/test` folder you can find the `package.json` file. This is a copy of the `./node/src/package.json`. I didn't find a nice way to share the two files, so I'm fine with a little effort to maintains both.
 
 You need the following steps to run tests:
 
@@ -51,6 +71,7 @@ You need the following steps to run tests:
 yarn install -g yarn
 yarn install -g mocha
 
+npm install
 npm test
 ```
 
@@ -58,11 +79,20 @@ This will execute all the js files under the `./node/test/` directory
 
 ## Running the generated project
 
-Make sure you have node version `>= 6` because this project uses native supported ES6 features.
+You can 
 
 ### Development
 
+If you would like to run the application out of the container make sure you have node version `>= 6` because this project uses native supported ES6 features.
 
+Inside the `./node/src` directory type the following commands:
+
+```bash
+yarn install
+npm dev
+```
+
+https://github.com/remy/nodemon
 
 ### Production
 
@@ -84,8 +114,8 @@ sudo docker build -t <image-name> .
 
 * [npm](https://www.npmjs.com/) - Dependency Management
 * [express](https://expressjs.com/) - The web framework used
-* [bluebird](http://bluebirdjs.com/docs/getting-started.html)
-* [body-parser]() - Third party promise library
+* [bluebird](http://bluebirdjs.com/docs/getting-started.html) - Third party promise library
+* [body-parser](https://www.npmjs.com/package/body-parser) - body parsing middleware.
 * [express-mongoose-status](https://www.npmjs.com/package/express-mongoose-status) -  handle mongoose responses and convert them to correct HTTP status in a REST API using Express
 * [helmet](https://helmetjs.github.io/) - Helmet helps you secure your Express apps by setting various HTTP headers.
 * [http-status-codes](https://www.npmjs.com/package/http-status-codes) - Constants enumerating the HTTP status codes.

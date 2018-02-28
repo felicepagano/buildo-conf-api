@@ -1,0 +1,126 @@
+{
+	"info": {
+		"name": "configuration",
+		"_postman_id": "1d8e7926-cb76-4591-4f76-b3799e72b3e6",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get all configuration",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/configurations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"configurations"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "post new configuration",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"_id\": \"test\",\n\"name\": \"Configuration for Foo\",\n\"value\": \"This is the value for configuration Foo\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/configurations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"configurations"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get configuration by _id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/configurations/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"configurations",
+						"test"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "delete configuration",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/configurations/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"configurations",
+						"test"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "dbe5c6d6-4dc3-4404-9d91-907c7aa645be",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "14b84403-539f-446b-a8a3-50b1f319be09",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

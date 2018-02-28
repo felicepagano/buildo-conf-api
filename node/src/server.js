@@ -44,7 +44,7 @@ const bluebird = require('bluebird');
  * instead of Internal Server Error.
  * For others errors it will return an Internal Server Error.
  */
-const statusHandler = require('express-mongoose-status');
+const statusHandler = require('statusHandler');
 
 const config = require('./config');
 const routes = require('./routes');
@@ -62,7 +62,7 @@ app.use(bodyParser.json());
 app.use(morgan('tiny'));
 app.use('/', routes);
 
-// if you will remove mongoose as dependecy this middleware will not be necessary.
+// if you will remove mongoose as dependency this middleware will not be necessary.
 app.use((err, req, res, next) => {
   // console.error(err.stack);
   statusHandler(err, res);
