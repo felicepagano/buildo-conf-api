@@ -14,6 +14,7 @@ describe('schema validation', () => {
   });
 
   it('should be invalid if name has more than 1024 characters', (done) => {
+    // generate string long more than 1024 character
     const k = 'a'.repeat(1025);
     const Model = mongoose.model('configuration', schema);
     new Model({ _id: '1', name: k, description: 'A' }).validate((err) => {
@@ -23,6 +24,7 @@ describe('schema validation', () => {
   });
 
   it('should be invalid if description has more than 1024 characters', (done) => {
+    // generate string long more than 1024 character
     const v = 'b'.repeat(1025);
     const Model = mongoose.model('configuration', schema);
     new Model({ _id: '1', name: 'A', value: v }).validate((err) => {

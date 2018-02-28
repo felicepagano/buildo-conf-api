@@ -1,11 +1,8 @@
 {
   "name": "buildo",
   "version": "0.1.0",
-  "description": "demo",
-  "main": "server.js",
+  "description": "test the demo application",
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "node server.js",
     "test": "mocha ./*.js"
   },
   "engines": {

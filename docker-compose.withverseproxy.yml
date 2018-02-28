@@ -1,0 +1,41 @@
+#this version of docker-compose file setup an environment with nginx as reverse proxy that expose only https port 443
+#and enables basic auth. For further details please refer to nginx/Dockerfile
+version: '3'
+
+services:
+
+  nginx:
+    restart: always
+    build: ./nginx/
+    ports:
+      - "443:443"
+    volumes:
+      - data-volume:/www/public
+    links:
+      - web:web
+    image:
+      fpagano/buildo-nginx
+
+  web:
+    command: npm start
+    build: ./node
+    volumes:
+      - ./node/src:/usr/src/app
+    ports:
+      - "8080:8080"
+    links:
+      - mongo
+    environment:
+      - MONGO_DB_URI=mongodb://mongo:27017/buildo
+    image:
+      fpagano/buildo-node
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - data-volume:/data/db
+
+volumes:
+  data-volume:

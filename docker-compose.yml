@@ -2,24 +2,14 @@ version: '3'
 
 services:
 
-  nginx:
-    restart: always
-    build: ./nginx/
-    ports:
-      - "443:443"
-    volumes:
-      - data-volume:/www/public
-    links:
-      - web:web
-    image:
-      fpagano/buildo-nginx
-
   web:
     command: npm start
     build: ./node
     volumes:
-      - ./node/src:/usr/src/app
+      - web-volume:/usr/src/app
     ports:
+      #here you can define the host port if you need another one.
+      #"HOST:CONTAINER" please due to YAML number parsing please specify your port mappings as strings.
       - "8080:8080"
     links:
       - mongo
@@ -37,3 +27,4 @@ services:
 
 volumes:
   data-volume:
+  web-volume:
